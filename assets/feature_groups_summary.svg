@@ -1,0 +1,56 @@
+<svg width="1400" height="860" viewBox="0 0 1400 860" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #f5f7fb; }
+      .title { font: 700 34px Arial, sans-serif; fill: #11243d; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #57687c; }
+      .group-title { font: 700 26px Arial, sans-serif; fill: #10233f; }
+      .feature { font: 400 18px Arial, sans-serif; fill: #31475f; }
+      .note { font: 400 14px Arial, sans-serif; fill: #5f7188; }
+      .panel-blue { fill: #e9f1ff; stroke: #b7cbf7; stroke-width: 2; rx: 28; }
+      .panel-green { fill: #e9f8f1; stroke: #9fd7bd; stroke-width: 2; rx: 28; }
+      .panel-orange { fill: #fff5e8; stroke: #edc48c; stroke-width: 2; rx: 28; }
+      .panel-white { fill: #ffffff; stroke: #d9e2ee; stroke-width: 2; rx: 28; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1400" height="860"/>
+  <text x="70" y="70" class="title">Feature Groups Used Across the Project</text>
+  <text x="70" y="102" class="subtitle">A compact view of the main signals created in Feature engineering.py and organized in Model.py.</text>
+
+  <rect class="panel-blue" x="70" y="150" width="390" height="290"/>
+  <text x="100" y="194" class="group-title">Base Numeric Features</text>
+  <text x="100" y="234" class="feature">• distance_km</text>
+  <text x="100" y="266" class="feature">• lead_time_days</text>
+  <text x="100" y="298" class="feature">• order_value</text>
+  <text x="100" y="330" class="feature">• item_order_frequency</text>
+  <text x="100" y="362" class="feature">• supplier_item_frequency</text>
+  <text x="100" y="394" class="feature">• order_month, order_day_of_week</text>
+  <text x="100" y="426" class="feature">• precipitation, max_wind</text>
+
+  <rect class="panel-green" x="505" y="150" width="390" height="290"/>
+  <text x="535" y="194" class="group-title">Categorical Risk Features</text>
+  <text x="535" y="234" class="feature">• weather_risk_index</text>
+  <text x="535" y="266" class="feature">• transport_region</text>
+  <text x="535" y="298" class="feature">• transport_corridor_risk</text>
+  <text x="535" y="346" class="note">Used in the modeling preprocessor through imputation</text>
+  <text x="535" y="370" class="note">and one-hot encoding.</text>
+
+  <rect class="panel-orange" x="940" y="150" width="390" height="290"/>
+  <text x="970" y="194" class="group-title">Monitoring Features</text>
+  <text x="970" y="234" class="feature">• supplier_otd_pct</text>
+  <text x="970" y="266" class="feature">• supplier_avg_fulfillment</text>
+  <text x="970" y="298" class="feature">• supplier_cost_stability</text>
+  <text x="970" y="330" class="feature">• supplier_cluster</text>
+  <text x="970" y="362" class="feature">• supplier_score</text>
+  <text x="970" y="410" class="note">Created inside Model.py for analysis runs.</text>
+
+  <rect class="panel-white" x="70" y="500" width="1260" height="240"/>
+  <text x="100" y="544" class="group-title">Business Meaning of the Signals</text>
+  <text x="100" y="588" class="feature">• Route features explain transport exposure, geographic reach, and corridor risk.</text>
+  <text x="100" y="624" class="feature">• Timing features explain whether the order was placed with enough lead time.</text>
+  <text x="100" y="660" class="feature">• Price and supplier-history features explain operational familiarity and commercial anomalies.</text>
+  <text x="100" y="696" class="feature">• Monitoring features summarize supplier quality and stability beyond a single order.</text>
+
+  <text x="70" y="804" class="note">This diagram is useful for the methods or features section of a paper, poster, or presentation.</text>
+</svg>

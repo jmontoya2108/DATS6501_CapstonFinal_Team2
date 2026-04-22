@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Diagram Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #11243d;
+      padding: 32px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+    }
+    p {
+      color: #5a6d84;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #d9e2ee;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(17, 36, 61, 0.08);
+    }
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid #e0e7f0;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Procurement Project Diagrams</h1>
+  <p>
+    These visuals were generated from the current codebase reading of <code>Feature engineering.py</code> and <code>Model.py</code>.
+    You can use them in a poster, paper web page, or presentation deck.
+  </p>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Feature Engineering Flow</h2>
+      <img src="feature_engineering_pipeline.svg" alt="Feature engineering pipeline diagram">
+    </section>
+    <section class="card">
+      <h2>Model Training Flow</h2>
+      <img src="model_pipeline.svg" alt="Model training pipeline diagram">
+    </section>
+    <section class="card">
+      <h2>Feature Group Summary</h2>
+      <img src="feature_groups_summary.svg" alt="Feature group summary diagram">
+    </section>
+  </div>
+</body>
+</html>

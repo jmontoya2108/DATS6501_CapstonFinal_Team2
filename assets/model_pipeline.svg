@@ -1,0 +1,80 @@
+<svg width="1400" height="920" viewBox="0 0 1400 920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, sans-serif; fill: #11243d; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #57687c; }
+      .box-title { font: 700 22px Arial, sans-serif; fill: #10233f; }
+      .box-text { font: 400 16px Arial, sans-serif; fill: #41566e; }
+      .small { font: 400 14px Arial, sans-serif; fill: #5f7188; }
+      .card { fill: #ffffff; stroke: #d9e2ee; stroke-width: 2; rx: 24; }
+      .blue { fill: #e9f1ff; stroke: #b7cbf7; stroke-width: 2; rx: 24; }
+      .green { fill: #e9f8f1; stroke: #9fd7bd; stroke-width: 2; rx: 24; }
+      .sand { fill: #fff5e8; stroke: #edc48c; stroke-width: 2; rx: 24; }
+      .arrow { stroke: #2c5fa8; stroke-width: 4; fill: none; marker-end: url(#m2); }
+    </style>
+    <marker id="m2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2c5fa8"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="920"/>
+  <text x="70" y="70" class="title">Model Training and Artifact Pipeline</text>
+  <text x="70" y="102" class="subtitle">Based on Model.py: feature selection, supplier profiles, model comparison, and production artifact export.</text>
+
+  <rect class="blue" x="70" y="150" width="300" height="140"/>
+  <text x="95" y="188" class="box-title">1. Load Dataset</text>
+  <text x="95" y="220" class="box-text">Reads CleanandEngineered_Data.csv</text>
+  <text x="95" y="246" class="box-text">Parses dates and enforces non-null targets</text>
+
+  <rect class="card" x="70" y="350" width="300" height="160"/>
+  <text x="95" y="388" class="box-title">2. Helper Variables</text>
+  <text x="95" y="420" class="box-text">fulfillment_rate added</text>
+  <text x="95" y="446" class="box-text">Available features grouped into</text>
+  <text x="95" y="472" class="box-text">base, categorical, and monitoring sets</text>
+
+  <rect class="green" x="470" y="150" width="390" height="200"/>
+  <text x="495" y="188" class="box-title">3. Early-Warning Feature Set</text>
+  <text x="495" y="220" class="box-text">Base: distance, lead time, order value, frequency, date, weather, price_ratio</text>
+  <text x="495" y="252" class="box-text">Categorical: weather_risk_index, transport_region, transport_corridor_risk</text>
+  <text x="495" y="284" class="small">These are intended to be available at order-creation time.</text>
+
+  <rect class="sand" x="470" y="410" width="390" height="220"/>
+  <text x="495" y="448" class="box-title">4. Supplier Monitoring Features</text>
+  <text x="495" y="480" class="box-text">supplier_otd_pct</text>
+  <text x="495" y="506" class="box-text">supplier_avg_fulfillment</text>
+  <text x="495" y="532" class="box-text">supplier_cost_stability</text>
+  <text x="495" y="558" class="box-text">supplier_cluster via KMeans</text>
+  <text x="495" y="584" class="box-text">supplier_score weighted from service and stability</text>
+
+  <rect class="card" x="950" y="130" width="340" height="230"/>
+  <text x="975" y="168" class="box-title">5. Regression Comparison</text>
+  <text x="975" y="200" class="box-text">Random Forest Regressor</text>
+  <text x="975" y="226" class="box-text">Gradient Boosting Regressor</text>
+  <text x="975" y="252" class="box-text">Optional GridSearchCV XGBoost</text>
+  <text x="975" y="290" class="box-text">Metrics: MAE, RMSE, R²</text>
+  <text x="975" y="322" class="small">Best stored result: Random Forest with RMSE 16.63</text>
+
+  <rect class="card" x="950" y="430" width="340" height="210"/>
+  <text x="975" y="468" class="box-title">6. Classification Comparison</text>
+  <text x="975" y="500" class="box-text">Random Forest Classifier</text>
+  <text x="975" y="526" class="box-text">Gradient Boosting Classifier</text>
+  <text x="975" y="564" class="box-text">Metrics: Accuracy, ROC-AUC</text>
+  <text x="975" y="590" class="box-text">Feature importance plotted for tree models</text>
+  <text x="975" y="616" class="small">Best stored result: Random Forest ROC-AUC 0.930</text>
+
+  <rect class="blue" x="470" y="710" width="820" height="130"/>
+  <text x="495" y="748" class="box-title">7. Production Export</text>
+  <text x="495" y="780" class="box-text">Production artifacts are fitted with early-warning features only, then saved as late_days_model.pkl, is_late_model.pkl, and model_features.pkl.</text>
+  <text x="495" y="808" class="box-text">Comparison tables are also exported to regression_model_comparison.csv and classification_model_comparison.csv.</text>
+
+  <path class="arrow" d="M220 290 L220 350"/>
+  <path class="arrow" d="M370 220 L470 220"/>
+  <path class="arrow" d="M370 430 L470 520"/>
+  <path class="arrow" d="M860 250 L950 250"/>
+  <path class="arrow" d="M860 520 L950 535"/>
+  <path class="arrow" d="M1120 360 L1120 430"/>
+  <path class="arrow" d="M1120 640 L1120 710"/>
+
+  <text x="70" y="885" class="small">Key idea: Model.py evaluates both experimental setups, but saves a production pipeline constrained to features that should exist before delivery happens.</text>
+</svg>

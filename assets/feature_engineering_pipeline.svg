@@ -1,0 +1,96 @@
+<svg width="1400" height="980" viewBox="0 0 1400 980" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .title { font: 700 34px Arial, sans-serif; fill: #11243d; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #57687c; }
+      .box-title { font: 700 22px Arial, sans-serif; fill: #10233f; }
+      .box-text { font: 400 16px Arial, sans-serif; fill: #41566e; }
+      .small { font: 400 14px Arial, sans-serif; fill: #5f7188; }
+      .card { fill: #ffffff; stroke: #d9e2ee; stroke-width: 2; rx: 24; }
+      .accent { fill: #e8f0ff; stroke: #b7cbf7; stroke-width: 2; rx: 24; }
+      .warn { fill: #fff4e8; stroke: #f0c38a; stroke-width: 2; rx: 24; }
+      .good { fill: #e9f8f1; stroke: #9fd7bd; stroke-width: 2; rx: 24; }
+      .arrow { stroke: #295ea8; stroke-width: 4; fill: none; marker-end: url(#m); }
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#295ea8"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="980"/>
+  <text x="70" y="70" class="title">Feature Engineering Pipeline</text>
+  <text x="70" y="102" class="subtitle">Based on Feature engineering.py: procurement joins, route enrichment, weather, corridor, and pricing signals.</text>
+
+  <rect class="accent" x="70" y="150" width="270" height="110"/>
+  <text x="95" y="188" class="box-title">1. Source Inputs</text>
+  <text x="95" y="220" class="box-text">Clean procurement Excel</text>
+  <text x="95" y="246" class="box-text">Private coordinates workbook</text>
+
+  <rect class="card" x="70" y="320" width="270" height="150"/>
+  <text x="95" y="358" class="box-title">2. Coordinate Joins</text>
+  <text x="95" y="390" class="box-text">ShipToCode → origin latitude/longitude</text>
+  <text x="95" y="416" class="box-text">PurchaseName → destination latitude/longitude</text>
+  <text x="95" y="442" class="small">Rows missing destination coordinates are removed.</text>
+
+  <rect class="card" x="70" y="530" width="270" height="160"/>
+  <text x="95" y="568" class="box-title">3. Delivery Targets</text>
+  <text x="95" y="600" class="box-text">ReceiptDate and RequiredDate parsed</text>
+  <text x="95" y="626" class="box-text">late_days = ReceiptDate - RequiredDate</text>
+  <text x="95" y="652" class="box-text">is_late flag and delay categories</text>
+
+  <rect class="card" x="70" y="750" width="270" height="150"/>
+  <text x="95" y="788" class="box-title">4. Fulfillment Signals</text>
+  <text x="95" y="820" class="box-text">Backordered_qty</text>
+  <text x="95" y="846" class="box-text">DeliveryStatus</text>
+  <text x="95" y="872" class="box-text">On-time delivery summaries</text>
+
+  <rect class="good" x="430" y="150" width="420" height="180"/>
+  <text x="455" y="188" class="box-title">Transport Features</text>
+  <text x="455" y="220" class="box-text">Haversine distance_km from origin to destination</text>
+  <text x="455" y="246" class="box-text">distance_category = short / medium / long</text>
+  <text x="455" y="272" class="box-text">origin_state and destination_state via reverse geocoding</text>
+  <text x="455" y="298" class="box-text">transport_region = domestic vs interstate</text>
+
+  <rect class="warn" x="430" y="390" width="420" height="190"/>
+  <text x="455" y="428" class="box-title">Weather Features</text>
+  <text x="455" y="460" class="box-text">Open-Meteo archive API queried by origin coordinates</text>
+  <text x="455" y="486" class="box-text">Merged on PurchaseOrderDate + origin latitude + longitude</text>
+  <text x="455" y="512" class="box-text">precipitation, max_wind</text>
+  <text x="455" y="538" class="box-text">weather_risk_index = low / medium / high</text>
+  <text x="455" y="564" class="small">These are early-warning external context features.</text>
+
+  <rect class="card" x="430" y="640" width="420" height="200"/>
+  <text x="455" y="678" class="box-title">Commercial and History Features</text>
+  <text x="455" y="710" class="box-text">order_value = UnitCost × QuantityOrdered</text>
+  <text x="455" y="736" class="box-text">item_order_frequency</text>
+  <text x="455" y="762" class="box-text">supplier_item_frequency</text>
+  <text x="455" y="788" class="box-text">order_month, order_day_of_week, lead_time_days</text>
+  <text x="455" y="814" class="box-text">historical_item_avg_price, price_variance, price_ratio</text>
+
+  <rect class="accent" x="930" y="220" width="380" height="220"/>
+  <text x="955" y="258" class="box-title">Route Corridor Risk</text>
+  <text x="955" y="290" class="box-text">FAF5Network.gdb loaded with GeoPandas</text>
+  <text x="955" y="316" class="box-text">Shipment route built as LineString</text>
+  <text x="955" y="342" class="box-text">Spatial join against major corridors</text>
+  <text x="955" y="368" class="box-text">transport_corridor_risk = high / low</text>
+  <text x="955" y="394" class="small">This adds route exposure beyond straight-line distance.</text>
+
+  <rect class="good" x="930" y="540" width="380" height="180"/>
+  <text x="955" y="578" class="box-title">Final Engineered Dataset</text>
+  <text x="955" y="610" class="box-text">CleanandEngineered_Data.csv</text>
+  <text x="955" y="636" class="box-text">Used by Model.py as the main training input</text>
+  <text x="955" y="662" class="box-text">Contains target, operational, transport, and pricing features</text>
+
+  <path class="arrow" d="M205 260 L205 320"/>
+  <path class="arrow" d="M205 470 L205 530"/>
+  <path class="arrow" d="M205 690 L205 750"/>
+  <path class="arrow" d="M340 205 L430 205"/>
+  <path class="arrow" d="M340 395 L430 480"/>
+  <path class="arrow" d="M340 605 L430 740"/>
+  <path class="arrow" d="M850 300 L930 330"/>
+  <path class="arrow" d="M850 740 L930 630"/>
+  <path class="arrow" d="M1120 440 L1120 540"/>
+
+  <text x="70" y="945" class="small">Key idea: the script moves from raw procurement rows to a risk-aware dataset by layering route, timing, fulfillment, supplier history, weather, corridor, and price features.</text>
+</svg>

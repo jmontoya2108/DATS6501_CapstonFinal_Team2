@@ -8,6 +8,10 @@ This repository contains a focused Streamlit application for procurement data en
 - `data/Datasets_Procurement_Cleaned_20260210_210209.xlsx` - anonymized procurement sample data.
 - `data/Private_coordinates.xlsx` - anonymized private coordinate lookup used by the app.
 - `data_cleaning_script.py` - data cleaning reference script, including supplier anonymization logic.
+- `src/feature_engineering.py` - command-line export of the engineered modeling dataset.
+- `src/coordinate_privacy.py` - coordinate displacement utility used to create privacy-preserving coordinates.
+- `docs/feature_engineering_weather_traffic.md` - explanation of engineered weather, transport, and corridor-risk features.
+- `assets/` - feature engineering and model pipeline diagrams.
 - `requirements.txt` - Python dependencies for local use and Streamlit Community Cloud.
 
 ## Run Locally
@@ -28,3 +32,7 @@ streamlit run streamlit_app.py
 ## Privacy Note
 
 Supplier names in the included sample files have been anonymized as `Supplier 1`, `Supplier 2`, `Supplier 3`, and so on. The coordinate lookup has been anonymized with the same mapping so the app joins correctly.
+
+## Feature Engineering Notes
+
+The Streamlit app generates route, timing, supplier-history, pricing, weather-risk, and traffic/corridor proxy features during the data engineering step. See [docs/feature_engineering_weather_traffic.md](docs/feature_engineering_weather_traffic.md) for details.
