@@ -255,18 +255,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-st.markdown(
-    """
-    <div class="section-intro" style="margin-top:0.35rem; margin-bottom:1.2rem;">
-        <h3>Executive Procurement Control Tower</h3>
-        <p>
-            Use this workspace to engineer procurement data, monitor supplier performance, train delay-risk models,
-            and present route-level decisions in a more polished and stakeholder-ready format.
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
 
 
 # ============================================================
@@ -822,21 +810,32 @@ def train_models(df):
 # ============================================================
 # SIDEBAR
 # ============================================================
+# Initialize variables
+procurement_file = None
+private_coords_file = None
+run_processing = False
+run_custom_processing = False
+
 with st.sidebar:
     st.markdown("### Data Intake")
     st.caption("Load the source files used to build the procurement intelligence workspace.")
-    procurement_file = st.file_uploader("Upload procurement Excel file", type=["xlsx"])
-    private_coords_file = st.file_uploader("Upload private coordinates Excel file", type=["xlsx"])
-    run_processing = st.button("Run data engineering", type="primary")
-    run_sample_processing = st.button("Use repo sample files")
-
+    
+    # Default data sources
     default_procurement_path, default_coords_path = get_default_data_sources()
+    
     if default_procurement_path and default_coords_path:
-        st.caption(
-            f"Bundled files detected: `{default_procurement_path.name}` and `{default_coords_path.name}`."
-        )
+        st.info(f"✅ **Default Data Loaded**\n- {default_procurement_path.name}\n- {default_coords_path.name}")
+        run_processing = st.button("Run data engineering (default files)", type="primary")
     else:
-        st.caption("Bundled sample files were not fully detected in the local `data` folder.")
+        st.warning("Default files not found. Please upload files below.")
+        run_processing = False
+    
+    # Option to use custom files
+    with st.expander("📤 Use Different Data"):
+        st.caption("Upload custom procurement and coordinates files")
+        procurement_file = st.file_uploader("Upload procurement Excel file", type=["xlsx"])
+        private_coords_file = st.file_uploader("Upload private coordinates Excel file", type=["xlsx"])
+        run_custom_processing = st.button("Run data engineering (custom files)", type="secondary")
 
 
 # ============================================================
@@ -853,32 +852,34 @@ if "predicted_route_df" not in st.session_state:
 # ============================================================
 # MAIN APP
 # ============================================================
+# Handle default file processing
 if run_processing:
-    if procurement_file is None or private_coords_file is None:
-        st.error("Please upload both Excel files.")
-    else:
-        try:
-            with st.spinner("Processing uploaded files..."):
-                engineered_df = process_procurement(procurement_file, private_coords_file)
-                st.session_state.engineered_df = engineered_df
-                st.session_state.model_results = None
-                st.session_state.predicted_route_df = None
-            st.success("Data engineering completed.")
-        except Exception as e:
-            st.exception(e)
-
-if run_sample_processing:
     default_procurement_path, default_coords_path = get_default_data_sources()
     if default_procurement_path is None or default_coords_path is None:
         st.error("Bundled sample files were not found in the local data folder.")
     else:
         try:
-            with st.spinner("Processing bundled sample files..."):
+            with st.spinner("Processing bundled default files..."):
                 engineered_df = process_procurement(default_procurement_path, default_coords_path)
                 st.session_state.engineered_df = engineered_df
                 st.session_state.model_results = None
                 st.session_state.predicted_route_df = None
-            st.success("Bundled sample files processed successfully.")
+            st.success("✅ Data engineering completed with default files.")
+        except Exception as e:
+            st.exception(e)
+
+# Handle custom file processing
+if run_custom_processing:
+    if procurement_file is None or private_coords_file is None:
+        st.error("Please upload both Excel files.")
+    else:
+        try:
+            with st.spinner("Processing custom files..."):
+                engineered_df = process_procurement(procurement_file, private_coords_file)
+                st.session_state.engineered_df = engineered_df
+                st.session_state.model_results = None
+                st.session_state.predicted_route_df = None
+            st.success("✅ Data engineering completed with custom files.")
         except Exception as e:
             st.exception(e)
 
