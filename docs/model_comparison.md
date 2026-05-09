@@ -28,21 +28,7 @@
 | **Interpretability** | Good | Excellent | Good | Good | Poor | Very Poor |
 | **Scalability** | ✅ Good | ✅ Excellent | ✅ Excellent | ✅ Good | Medium | Medium |
 
----
-
-## Model Selection Rationale for Procurement Risk
-
-### Why Random Forest Was Selected ✅
-
-| Criterion | Rating | Reason |
-|-----------|--------|--------|
-| **Performance** | ⭐⭐⭐⭐⭐ | High accuracy (92%) & ROC-AUC (0.96) for classification; R² 0.89 for regression |
-| **Interpretability** | ⭐⭐⭐⭐ | Provides feature importance rankings to identify key risk drivers |
-| **Robustness** | ⭐⭐⭐⭐⭐ | Handles missing data well; resistant to outliers |
-| **Non-linearity** | ⭐⭐⭐⭐⭐ | Captures complex relationships between distance, lead time, supplier history |
-| **No Scaling Needed** | ⭐⭐⭐⭐⭐ | Mixed categorical/numeric features require no preprocessing |
-| **Business Value** | ⭐⭐⭐⭐⭐ | Actionable insights on delivery risk for supply chain planning |
-| **Inference Speed** | ⭐⭐⭐⭐ | Fast predictions for real-time order scoring |
+--
 
 ---
 
@@ -121,9 +107,9 @@ Random Forest Regressor (300 trees):
 ## Recommendation
 
 **Random Forest is optimal for this capstone project** because it:
-- ✅ Balances performance (92% accuracy) with interpretability
-- ✅ Identifies actionable risk drivers for supply chain teams
-- ✅ Works with mixed data types without preprocessing
-- ✅ Scales well for real-time predictions
-- ✅ Simplicity aids presentation & stakeholder buy-in
-- ✅ Suitable for medium-sized dataset (~1000 orders)
+- Balances performance (92% accuracy) with interpretability
+- Identifies actionable risk drivers for supply chain teams
+- Works with mixed data types without preprocessing
+- Scales well for real-time predictions
+- Simplicity aids presentation & stakeholder buy-in
+- Suitable for medium-sized dataset (~1000 orders)

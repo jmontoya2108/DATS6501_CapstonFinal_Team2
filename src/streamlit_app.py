@@ -26,8 +26,8 @@ from sklearn.metrics import (
     confusion_matrix,
 )
 
-APP_DIR = Path(__file__).resolve().parent
-DATA_DIR = APP_DIR / "data"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = PROJECT_ROOT / "data"
 
 st.set_page_config(page_title="Supply Chain Risk AI", page_icon="📦", layout="wide")
 st.title("📦 Procurement Risk Modeling App")

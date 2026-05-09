@@ -1,9 +1,12 @@
+# Export script that runs the app's procurement processing pipeline and saves the engineered modeling dataset.
+# The main feature engineering logic is in src/streamlit_app.py.
 from pathlib import Path
 import sys
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT_ROOT))
+SRC_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(SRC_DIR))
 
 from streamlit_app import get_default_data_sources, process_procurement
 
